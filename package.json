@@ -1,33 +1,20 @@
 {
   "name": "react-tetris",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "howler": "^2.1.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1",
-    "styled-components": "^4.3.2"
-  },
+  "version": "1.1.0",
+  "private": false,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite ",
+    "build": "vite build",
+    "test": "vite preview"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "howler": "^2.2.4",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "styled-components": "^6.4.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "vite": "^8.1.0"
   }
 }
