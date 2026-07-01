@@ -15,7 +15,7 @@ import {useInterval} from '../hooks/useInterval';
 import {usePlayer} from '../hooks/usePlayer';
 import {useStage} from '../hooks/useStage';
 
-import {checkCollision, createStage} from '../gameHelper';
+import {checkCollision, createStage, getSpeedByLevel} from '../gameHelper';
 
 import {playMusic} from '../music';
 
@@ -36,7 +36,7 @@ const Tetris = () => {
   };
   const startGame = () => {
     playMusic('START_GAME');
-    setDropTime(1000 / (level + 1) + 200);
+    setDropTime(getSpeedByLevel(level));
     setStage(createStage());
     resetPlayer();
     setGameOver(false);
@@ -49,7 +49,7 @@ const Tetris = () => {
     if (rows > (level + 1) * 10) {
       setLevel((prev) => prev + 1);
       // Increase speed
-      setDropTime(1000 / (level + 1) + 200);
+      setDropTime(getSpeedByLevel(level));
     }
 
     if (!checkCollision(player, stage, {x: 0, y: 1})) {
@@ -67,8 +67,14 @@ const Tetris = () => {
   const keyUp = ({keyCode}) => {
     if (!gameOver) {
       if (keyCode === 40) {
-        setDropTime(1000 / (level + 1) + 200);
+        setDropTime(getSpeedByLevel(level));
       }
+    }
+    // Press space for start/stop game
+    if (keyCode === 32) {
+      gameOver
+        ? startGame()
+        : setDropTime(dropTime ? null : getSpeedByLevel(level));
     }
   };
   const dropPlayer = () => {
